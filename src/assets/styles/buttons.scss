@@ -1,0 +1,50 @@
+.button-group {
+    display: flex;
+}
+
+.button-group .button:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    border: none;
+    border-radius: max(5px, calc(5 / 16 * 1rem));
+    cursor: pointer;
+    background-color: #42A5F5; /* Blue 400 */
+    color: #FFFFFF;
+    box-shadow: 0 0 max(2px, calc(6 / 16 * 1rem)) #BDBDBD; /* Gray 400 */
+}
+.button:hover {
+    background-color: #1E88E5; /* Blue 600 */
+}
+.button:focus {
+    outline: max(2px, calc(2 / 16 * 1rem)) solid #1E88E5; /* Blue 600 */
+    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #42A5F5; /* Blue 400 */
+}
+
+.button.primary {
+    background-color: #66BB6A; /* Green 400 */
+}
+.button.primary:hover {
+    background-color: #43A047; /* Green 600 */
+}
+.button.primary:focus {
+    outline: max(2px, calc(2 / 16 * 1rem)) solid #43A047; /* Green 600 */
+    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #66BB6A; /* Green 400 */
+}
+
+.button.danger {
+    background-color: #EF5350; /* Red 400 */
+}
+.button.danger:hover {
+    background-color: #E53935; /* Red 600 */
+}
+.button.danger:focus {
+    outline: max(2px, calc(2 / 16 * 1rem)) solid #E53935; /* Red 600 */
+    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #EF5350; /* Red 400 */
+}
+

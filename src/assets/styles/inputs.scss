@@ -1,0 +1,38 @@
+.control-group label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: max(4px, calc(4 / 16 * 1rem));
+    display: inline-block;
+}
+.control-group.horizontal {
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 0.5rem;
+}
+.control-group.horizontal label {
+    margin-bottom: 0;
+    line-height: 2;
+}
+
+.control {
+    font-size: 1rem;
+    color: #424242; /* Gray 800 */
+    display: block;
+    margin-bottom: 0.75rem;
+    width: calc(100% - max(1px, calc(1 / 16 * 2 * 1rem)) - calc(0.5rem * 2));
+    height: calc(1.75rem - (max(1px, calc(1 / 16 * 1rem)) * 2));
+}
+input[type=text].control {
+    border: max(1px, calc(1 / 16 * 1rem)) solid #BDBDBD; /* Gray 400 */
+    border-radius: max(5px, calc(5 / 16 * 1rem));
+    padding: 0 0.5rem;
+}
+input[type=text].control:focus {
+    border: max(1px, calc(1 / 16 * 1rem)) solid #1E88E5; /* Blue 600 */
+    outline: max(1px, calc(1 / 16 * 1rem)) solid #42A5F5; /* Blue 400 */
+    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #42A5F5; /* Blue 400 */;
+}
+input[type=text].control::placeholder {
+    font-size: 0.75rem;
+    font-style: italic;
+}
