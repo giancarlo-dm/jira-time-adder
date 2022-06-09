@@ -1,0 +1,18 @@
+.report {
+    width: 60rem;
+    margin: auto;
+}
+
+.ruler {
+    border: none;
+    height: max(1px, calc(1 / 16 * 1rem));
+    background-color: #BDBDBD; /* Gray 400 */
+}
+
+.content {
+    padding: 1rem;
+}
+
+.container:not(:first-child) {
+    margin-top: 1rem;
+}

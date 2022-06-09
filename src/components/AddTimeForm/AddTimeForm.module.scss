@@ -1,0 +1,30 @@
+@import "../../assets/styles/buttons";
+
+.form {
+    width: 30rem;
+    margin: auto;
+    padding: 1rem;
+}
+
+.buttonGroup {
+    margin-top: 1.5rem;
+}
+
+.shortcuts {
+
+    margin-top: 1rem;
+
+    li {
+        font-size: 0.75rem;
+        list-style-type: none;
+    }
+
+    li:not(:first-child) {
+        margin-top: 0.5rem;
+    }
+}
+
+.shortcut {
+    font-weight: bold;
+    margin-right: 0.25em;
+}

@@ -1,0 +1,69 @@
+.item {
+    background-color: #F5F5F5; /* Gray 200 */
+    border: max(1px, calc(1 / 16 * 1rem)) solid #BDBDBD; /* Gray 400 */
+    color: #424242; /* Gray 800 */
+    height: 1.5rem;
+    border-radius: 1.5rem;
+    padding: 0 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+
+    .deleteButton {
+        background-color: #757575; /* Gray 600 */
+        border: none;
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:after {
+            content: "x";
+            color: #FFFFFF; /* White */
+            font-weight: bold;
+            font-style: normal;
+            font-size: 0.9rem;
+        }
+
+        &:focus {
+            border: max(1px, calc(1 / 16 * 1rem)) solid #1E88E5; /* Blue 600 */
+            outline: max(1px, calc(1 / 16 * 1rem)) solid #42A5F5; /* Blue 400 */
+            box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #42A5F5; /* Blue 400 */;
+        }
+
+        &:hover {
+            background-color: #C62828; /* Red 800 */
+        }
+    }
+
+    &.normal {
+        background-color: #C8E6C9; /* Green 100 */
+        border-color: #66BB6A; /* Green 400 */
+        color: #2E7D32; /* Green 800 */
+
+        > .deleteButton {
+            background-color: #43A047; /* Green 600 */
+        }
+    }
+
+    &.bug {
+        background-color: #FFCDD2; /* Red 100 */
+        border-color: #EF5350; /* Red 400 */
+        color: #C62828; /* Red 800 */
+
+        > .deleteButton {
+            background-color: #E53935; /* Red 600 */
+
+            &:focus {
+                border-color: #E53935;
+                outline-color: #EF5350;
+                box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #EF5350;
+            }
+        }
+    }
+}

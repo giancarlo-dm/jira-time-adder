@@ -16,11 +16,17 @@ root.render(
     </React.StrictMode>
 );
 
-class MyClass {
+// TODO
+// Components
+// ---
+//     Form - ok
+// Report
+// - SeriesList (all)
+// - Series (one for normal and one for bug)
+//     - SeriesItem
+// - Total
+//
+// First make run without using a store, then use a store solution:
+//   - First: ReactContext
+//   - Second: Redux with Redux Toolkit
 
-    sayHello(): void {
-        console.log("Hello World", MyClass);
-    }
-}
-
-new MyClass().sayHello();
