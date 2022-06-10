@@ -1,3 +1,5 @@
+@import "../../assets/styles/colors.constants";
+
 .report {
     width: 60rem;
     margin: auto;
@@ -6,7 +8,7 @@
 .ruler {
     border: none;
     height: max(1px, calc(1 / 16 * 1rem));
-    background-color: #BDBDBD; /* Gray 400 */
+    background-color: $gray_400;
 }
 
 .content {
@@ -16,24 +18,3 @@
 .container:not(:first-child) {
     margin-top: 1rem;
 }
-
-.series {
-    margin-left: 1rem;
-    display: flex;
-    align-items: baseline;
-
-    &:not(:first-of-type) {
-        margin-top: 1rem;
-    }
-
-    h5 {
-        font-size: 0.9rem;
-        width: 3rem;
-        height: calc(1.5rem + (max(1px, calc(1 / 16 * 1rem)) * 2));
-        margin-right: 0.5rem;
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-    }
-}
-

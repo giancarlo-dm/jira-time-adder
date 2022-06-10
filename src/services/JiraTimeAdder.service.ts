@@ -65,13 +65,13 @@ export class JiraTimeAdderService {
         return [...this.#bugsLoggedTimes];
     }
     /**
-     * Sum of {@link LoggTimeTypeEnum.NORMAL} times.
+     * A copy o sum of {@link LoggTimeTypeEnum.NORMAL} times.
      */
     get totalTimeSpent() {
         return new Time(this.#totalTimeSpent.hours, this.#totalTimeSpent.minutes);
     }
     /**
-     * Sum of {@link LoggTimeTypeEnum.BUG} times.
+     * A copy o sum of {@link LoggTimeTypeEnum.BUG} times.
      */
     get totalBugsTimeSpent() {
         return new Time(this.#totalBugsTimeSpent.hours, this.#totalBugsTimeSpent.minutes);

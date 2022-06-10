@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
-import { LoggTimeTypeEnum, Time } from "../../../services";
 
+import { LoggTimeTypeEnum, Time } from "../../../services";
 import classes from "./Total.module.scss";
 
 type Props = {
@@ -18,15 +18,15 @@ export const Total: FC<Props> = (props) => {
                 : <h4>Total spent in bugs:</h4>}
 
             <div className={classes.total}>
-                <div className={`control-group horizontal ${classes.controlGroup}`}>
-                    <label htmlFor="totalBugsPoints">Points</label>
-                    <input id="totalBugsPoints" type="text" className={`control ${classes.control}`}
+                <div className="control-group horizontal">
+                    <label htmlFor="totalPoints">Points</label>
+                    <input id={`${props.type}_totalPoints`} type="text" className="control"
                            value={props.points}
                            disabled />
                 </div>
-                <div className={`control-group horizontal ${classes.controlGroup}`}>
+                <div className="control-group horizontal">
                     <label htmlFor="totalBugsTime">Time</label>
-                    <input id="totalBugsTime" type="text" className={`control ${classes.control}`}
+                    <input id={`${props.type}_totalBugsTime`} type="text" className="control"
                            value={props.time.toString()}
                            disabled />
                 </div>

@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { LoggedTime, LoggTimeTypeEnum, Time } from "../../services";
 
-import classes from "./Report.module.scss";
-import { Series } from "./Series/Series";
+import { LoggedTime, LoggTimeTypeEnum, Time } from "../../services";
+import { TimeEntries } from "./TimeEntries/TimeEntries";
 import { Total } from "./Total/Total";
+import classes from "./Report.module.scss";
 
 type Props = {
     normalTimes: Array<LoggedTime>;
@@ -30,21 +30,9 @@ export const Report: FC<Props> = (props) => {
             <hr className={classes.ruler} />
             <div className={classes.content}>
                 <div className={classes.container}>
-                    <h4>Series</h4>
-                    <div className={classes.series}>
-                        <h5>Normal</h5>
-                        <Series times={props.normalTimes}
-                                onDeleteItem={props.onDeleteItem != null
-                                    ? props.onDeleteItem
-                                    : void (0)} />
-                    </div>
-                    <div className={classes.series}>
-                        <h5>Bugs</h5>
-                        <Series times={props.bugTimes}
-                                onDeleteItem={props.onDeleteItem != null
-                                    ? props.onDeleteItem
-                                    : void (0)}/>
-                    </div>
+                   <TimeEntries normalTimes={props.normalTimes}
+                                bugTimes={props.bugTimes}
+                                onDeleteItem={props.onDeleteItem} />
                 </div>
 
                 <div className={classes.container}>

@@ -1,7 +1,9 @@
+@import "../../../assets/styles/colors.constants";
+
 .item {
-    background-color: #F5F5F5; /* Gray 200 */
-    border: max(1px, calc(1 / 16 * 1rem)) solid #BDBDBD; /* Gray 400 */
-    color: #424242; /* Gray 800 */
+    background-color: $gray_200;
+    border: max(1px, calc(1 / 16 * 1rem)) solid $gray_400;
+    color: $gray_800;
     height: 1.5rem;
     border-radius: 1.5rem;
     padding: 0 0.5rem;
@@ -12,7 +14,7 @@
     column-gap: 0.25rem;
 
     .deleteButton {
-        background-color: #757575; /* Gray 600 */
+        background-color: $gray_600;
         border: none;
         cursor: pointer;
         width: 1rem;
@@ -24,45 +26,45 @@
 
         &:after {
             content: "x";
-            color: #FFFFFF; /* White */
+            color: $white;
             font-weight: bold;
             font-style: normal;
             font-size: 0.9rem;
         }
 
         &:focus {
-            border: max(1px, calc(1 / 16 * 1rem)) solid #1E88E5; /* Blue 600 */
-            outline: max(1px, calc(1 / 16 * 1rem)) solid #42A5F5; /* Blue 400 */
-            box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #42A5F5; /* Blue 400 */;
+            border: max(1px, calc(1 / 16 * 1rem)) solid $blue_600;
+            outline: max(1px, calc(1 / 16 * 1rem)) solid $blue_400;
+            box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) $blue_400;
         }
 
         &:hover {
-            background-color: #C62828; /* Red 800 */
+            background-color: $red_800;
         }
     }
 
     &.normal {
-        background-color: #C8E6C9; /* Green 100 */
-        border-color: #66BB6A; /* Green 400 */
-        color: #2E7D32; /* Green 800 */
+        background-color: $green_100;
+        border-color: $green_400;
+        color: $gray_800;
 
         > .deleteButton {
-            background-color: #43A047; /* Green 600 */
+            background-color: $green_600;
         }
     }
 
     &.bug {
-        background-color: #FFCDD2; /* Red 100 */
-        border-color: #EF5350; /* Red 400 */
-        color: #C62828; /* Red 800 */
+        background-color: $red_100;
+        border-color: $red_400;
+        color: $red_800;
 
         > .deleteButton {
-            background-color: #E53935; /* Red 600 */
+            background-color: $red_600;
 
             &:focus {
-                border-color: #E53935;
-                outline-color: #EF5350;
-                box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #EF5350;
+                border-color: $red_600;
+                outline-color: $red_400;
+                box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) $red_400;
             }
         }
     }

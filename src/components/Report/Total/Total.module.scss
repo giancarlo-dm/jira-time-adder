@@ -1,14 +1,16 @@
+@import "../../../assets/styles/colors.constants";
+
 .total {
     margin-left: 1rem;
     margin-top: 0.5rem;
 
-    .controlGroup {
+    :global(.control-group) {
 
         label {
             width: 3rem;
         }
 
-        .control {
+        :global(.control) {
             width: 4rem;
         }
     }

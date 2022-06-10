@@ -1,3 +1,5 @@
+@import "colors.constants";
+
 .control-group label {
     font-size: 0.9rem;
     font-weight: bold;
@@ -16,21 +18,21 @@
 
 .control {
     font-size: 1rem;
-    color: #424242; /* Gray 800 */
+    color: $gray_800;
     display: block;
     margin-bottom: 0.75rem;
     width: calc(100% - max(1px, calc(1 / 16 * 2 * 1rem)) - calc(0.5rem * 2));
     height: calc(1.75rem - (max(1px, calc(1 / 16 * 1rem)) * 2));
 }
 input[type=text].control {
-    border: max(1px, calc(1 / 16 * 1rem)) solid #BDBDBD; /* Gray 400 */
+    border: max(1px, calc(1 / 16 * 1rem)) solid $gray_400;
     border-radius: max(5px, calc(5 / 16 * 1rem));
     padding: 0 0.5rem;
 }
 input[type=text].control:focus {
-    border: max(1px, calc(1 / 16 * 1rem)) solid #1E88E5; /* Blue 600 */
-    outline: max(1px, calc(1 / 16 * 1rem)) solid #42A5F5; /* Blue 400 */
-    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) #42A5F5; /* Blue 400 */;
+    border: max(1px, calc(1 / 16 * 1rem)) solid $blue_600;
+    outline: max(1px, calc(1 / 16 * 1rem)) solid $blue_400;
+    box-shadow: 0 0 max(6px, calc(6 / 16 * 1rem)) $blue_400;
 }
 input[type=text].control::placeholder {
     font-size: 0.75rem;

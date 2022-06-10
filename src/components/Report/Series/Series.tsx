@@ -1,7 +1,7 @@
 import { FC } from "react";
+
 import { LoggedTime } from "../../../services";
 import { SeriesItem } from "../SeriesItem/SeriesItem";
-
 import classes from "./Series.module.scss";
 
 type Props = {
