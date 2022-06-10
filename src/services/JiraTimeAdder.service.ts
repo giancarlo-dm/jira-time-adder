@@ -1,8 +1,8 @@
 import { BigNumber } from "bignumber.js";
 
-import { LoggedTime } from "./LoggedTime.model.js";
-import { Time } from "./Time.model.js";
-import { LoggTimeTypeEnum } from "./LoggTimeType.enum.js";
+import { LoggedTime } from "./LoggedTime.model";
+import { Time } from "./Time.model";
+import { LoggTimeTypeEnum } from "./LoggTimeType.enum";
 
 export class JiraTimeAdderService {
 

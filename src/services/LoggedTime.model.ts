@@ -1,4 +1,5 @@
 import { BigNumber } from "bignumber.js";
+
 import { LoggTimeTypeEnum } from "./LoggTimeType.enum";
 
 import { Time } from "./Time.model";
