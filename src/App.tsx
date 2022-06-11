@@ -1,26 +1,43 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 
 import { AddTimeForm, Report } from "./components";
-import { JiraPointsContext, JiraPointsStore } from "./stores";
+import {
+    jiraPointsActions, LoggedTime, LoggTimeTypeEnum, useAppDispatch, useJiraPointsSlice
+} from "./store";
 
 function App() {
 
-    //#region Context
-    const jiraPointsStore = useContext<JiraPointsStore>(JiraPointsContext);
+    //#region Store Slices
+    const jiraPointsSlice = useJiraPointsSlice();
+    const dispatch = useAppDispatch();
+    //#endregion
+
+    //#region Event Handlers
+    const addTimeHandler = (time: string, loggTimeType: LoggTimeTypeEnum) => {
+        dispatch(jiraPointsActions.addTime({timeStr: time, type: loggTimeType}));
+    };
+
+    const deleteItemHandler = (loggedTime: LoggedTime) => {
+        dispatch(jiraPointsActions.removeTime({loggedTime: loggedTime}));
+    };
+
+    const resetHandler = () => {
+        dispatch(jiraPointsActions.reset());
+    };
     //#endregion
 
     //#region Render
     return (
         <Fragment>
-            <AddTimeForm onAddTime={jiraPointsStore.addTime} />
-            <Report normalTimes={jiraPointsStore.loggedTimes}
-                    bugTimes={jiraPointsStore.bugsLoggedTimes}
-                    points={jiraPointsStore.totalPointsSpent}
-                    bugPoints={jiraPointsStore.totalBugsPointsSpent}
-                    totalTimeSpent={jiraPointsStore.totalTimeSpent}
-                    totalBugsTimeSpent={jiraPointsStore.totalBugsTimeSpent}
-                    onDeleteItem={jiraPointsStore.removeTime}
-                    onReset={jiraPointsStore.reset} />
+            <AddTimeForm onAddTime={addTimeHandler} />
+            <Report normalTimes={jiraPointsSlice.loggedTimes}
+                    bugTimes={jiraPointsSlice.bugsLoggedTimes}
+                    points={jiraPointsSlice.totalPointsSpent}
+                    bugPoints={jiraPointsSlice.totalBugsPointsSpent}
+                    totalTimeSpent={jiraPointsSlice.totalTimeSpent}
+                    totalBugsTimeSpent={jiraPointsSlice.totalBugsTimeSpent}
+                    onDeleteItem={deleteItemHandler}
+                    onReset={resetHandler} />
         </Fragment>
     );
     //#endregion

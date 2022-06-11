@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LoggedTime, LoggTimeTypeEnum } from "../../../stores";
+import { LoggedTime, LoggTimeTypeEnum, TimeHelper } from "../../../store";
 import classes from "./SeriesItem.module.scss";
 
 type Props = {
@@ -17,7 +17,7 @@ export const SeriesItem: FC<Props> = (props) => {
             : "";
 
     const deleteItemHandler = () => {
-        const confirmed = window.confirm(`Are you sure you want to delete this entry?\n\nEntry: ${props.loggedTime.time.toString()} (${props.loggedTime.decimalTime.toFixed(2)})`);
+        const confirmed = window.confirm(`Are you sure you want to delete this entry?\n\nEntry: ${TimeHelper.format(props.loggedTime.time)} (${props.loggedTime.decimalTime})`);
         if (confirmed && props.onDelete != null) {
             props.onDelete();
         }
@@ -25,7 +25,7 @@ export const SeriesItem: FC<Props> = (props) => {
 
     return (
         <div className={`${classes.item} ${classType}`}>
-            <span>{props.loggedTime.time.toString()} ({props.loggedTime.decimalTime.toFixed(2)})</span>
+            <span>{TimeHelper.format(props.loggedTime.time)} ({props.loggedTime.decimalTime})</span>
             <button className={classes.deleteButton}
                     onClick={deleteItemHandler} />
         </div>

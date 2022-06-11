@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM, { Root } from "react-dom/client";
-import App from "./App";
+import { Provider } from "react-redux";
 
-import { JiraPointsContextProvider } from "./stores";
+import { store } from "./store";
+import App from "./App";
 
 import "./assets/fonts/roboto/font.css";
 import "./assets/styles/main.scss";
@@ -14,9 +15,9 @@ const root: Root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <JiraPointsContextProvider>
+        <Provider store={store} >
             <App />
-        </JiraPointsContextProvider>
+        </Provider>
     </React.StrictMode>
 );
 

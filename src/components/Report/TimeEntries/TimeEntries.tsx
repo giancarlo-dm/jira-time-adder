@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
 
-import { LoggedTime } from "../../../stores";
+import { LoggedTime } from "../../../store";
 import { Series } from "../Series/Series";
 import classes from "./TimeEntries.module.scss";
 

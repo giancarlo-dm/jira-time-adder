@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
 
-import { LoggTimeTypeEnum, Time } from "../../../stores";
+import { LoggTimeTypeEnum, Time, TimeHelper } from "../../../store";
 import classes from "./Total.module.scss";
 
 type Props = {
@@ -27,7 +27,7 @@ export const Total: FC<Props> = (props) => {
                 <div className="control-group horizontal">
                     <label htmlFor="totalBugsTime">Time</label>
                     <input id={`${props.type}_totalBugsTime`} type="text" className="control"
-                           value={props.time.toString()}
+                           value={TimeHelper.format(props.time)}
                            disabled />
                 </div>
             </div>
