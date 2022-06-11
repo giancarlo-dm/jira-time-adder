@@ -30,10 +30,10 @@ export class Time {
 
     //#region Public Methods
     /**
-     * Add a given time to the current time, modifying the current time.
+     * Add a given time to the current time, returning a new instance.
      * @param time Time to add.
      */
-    add(time: Time): void {
+    add(time: Time): Time {
         let hours = this.hours + time.hours;
         let minutes = this.minutes + time.minutes;
 
@@ -45,28 +45,26 @@ export class Time {
         hours += hoursToSum;
         minutes -= hoursToSum * 60;
 
-        this.hours = hours;
-        this.minutes = minutes;
+        return new Time(hours, minutes);
     }
 
     /**
-     * Subtract a given time to the current time, modifying the current time.
+     * Subtract a given time to the current time, returning a new instance.
      * @param time Time to Subtract.
      */
-    subtract(time: Time): void {
+    subtract(time: Time): Time {
         let currentTimeInMinutes = (this.hours * 60) + this.minutes;
         let timeInMinutes = (time.hours * 60) + time.minutes;
 
         currentTimeInMinutes -= timeInMinutes;
 
         const hours = (new BigNumber(currentTimeInMinutes))
-        .dividedBy(60)
-        .decimalPlaces(0, BigNumber.ROUND_FLOOR)
-        .toNumber();
+            .dividedBy(60)
+            .decimalPlaces(0, BigNumber.ROUND_FLOOR)
+            .toNumber();
         const minutes = currentTimeInMinutes - (hours * 60);
 
-        this.hours = hours;
-        this.minutes = minutes;
+        return new Time(hours, minutes);
     }
 
     /**

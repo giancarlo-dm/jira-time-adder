@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
 
-import { LoggTimeTypeEnum, Time } from "../../../services";
+import { LoggTimeTypeEnum, Time } from "../../../stores";
 import classes from "./Total.module.scss";
 
 type Props = {

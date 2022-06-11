@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LoggedTime, LoggTimeTypeEnum } from "../../../services";
+import { LoggedTime, LoggTimeTypeEnum } from "../../../stores";
 import classes from "./SeriesItem.module.scss";
 
 type Props = {

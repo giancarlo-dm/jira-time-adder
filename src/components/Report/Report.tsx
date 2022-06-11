@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { LoggedTime, LoggTimeTypeEnum, Time } from "../../services";
+import { LoggedTime, LoggTimeTypeEnum, Time } from "../../stores";
 import { TimeEntries } from "./TimeEntries/TimeEntries";
 import { Total } from "./Total/Total";
 import classes from "./Report.module.scss";

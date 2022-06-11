@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent, useRef } from "react";
 
-import { LoggTimeTypeEnum } from "../../services";
+import { LoggTimeTypeEnum } from "../../stores";
 import classes from "./AddTimeForm.module.scss";
 
 type Props = {
