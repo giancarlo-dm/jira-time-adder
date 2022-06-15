@@ -24,9 +24,9 @@ export const SeriesItem: FC<Props> = (props) => {
     };
 
     return (
-        <div className={`${classes.item} ${classType}`}>
-            <span>{TimeHelper.format(props.loggedTime.time)} ({props.loggedTime.decimalTime})</span>
-            <button className={classes.deleteButton}
+        <div className={`${classes.item} ${classType}`} data-testid="SeriesItem_container">
+            <span data-testid="SeriesItem_text">{TimeHelper.format(props.loggedTime.time)} ({props.loggedTime.decimalTime})</span>
+            <button className={classes.deleteButton} data-testid="SeriesItem_deleteButton"
                     onClick={deleteItemHandler} />
         </div>
     );

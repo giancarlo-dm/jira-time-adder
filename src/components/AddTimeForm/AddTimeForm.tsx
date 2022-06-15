@@ -15,7 +15,7 @@ type Props = {
  */
 export const AddTimeForm: FC<Props> = (props) => {
 
-    const timeInputRef = useRef<HTMLInputElement>(null);
+    const timeInputRef = useRef<HTMLInputElement>();
 
     const addTimeHandler = (logTimeType: LoggTimeTypeEnum) => {
 
@@ -49,7 +49,7 @@ export const AddTimeForm: FC<Props> = (props) => {
                 <label htmlFor="timeInput">
                     Time (decimal or time notation)
                 </label>
-                <input id="timeInput" type="text" className="control"
+                <input id="timeInput" type="text" className="control" data-testid="timeInput"
                        placeholder="Ex.: 1.5 or 1:30"
                        name="time"
                        onKeyDown={timeInputKeyDownHandler}
@@ -57,11 +57,11 @@ export const AddTimeForm: FC<Props> = (props) => {
             </div>
 
             <div className={`button-group ${classes.buttonGroup}`}>
-                <button type="button" className="button primary"
+                <button type="button" className="button primary" data-testid="addTimeButton"
                         onClick={addTimeHandler.bind(null, LoggTimeTypeEnum.NORMAL)}>
                     Add Time
                 </button>
-                <button type="button" className="button danger"
+                <button type="button" className="button danger" data-testid="addBugTimeButton"
                         onClick={addTimeHandler.bind(null, LoggTimeTypeEnum.BUG)}>
                     Add Bug Time
                 </button>
