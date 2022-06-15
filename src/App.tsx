@@ -7,6 +7,8 @@ import {
 
 function App() {
 
+    // TODO Refactor to not use Props but instead use the store dispatch
+
     //#region Store Slices
     const jiraPointsSlice = useJiraPointsSlice();
     const dispatch = useAppDispatch();

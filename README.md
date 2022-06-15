@@ -1,46 +1,22 @@
-# Getting Started with Create React App
+# Development
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Make sure NodeJS v16.15 is installed by typing in your terminal (cmd/powershell or bash) ```node -v```
+- This app was created using TypeScript, React (w/ CRA) and Electron (w/ Forge);
+- CD to the directory and install npm dependencies by typing in your terminal (cmd/powershell or bash) ```npm install```
+- Run by typing in your terminal (cmd/powershell or bash) ```npm run dev```
+- An electron window will automatically open
 
-## Available Scripts
+# Usage instructions
 
-In the project directory, you can run:
+- The app supports inserting time in normal notation (e.g. 01:30) or in decimal notation (e.g. 1.5);
+- Insert a time on the text input and click on a button to add a time or a bug time;
+    - Bug times does not add to the total time and is used only to get the total time spent on bugs;
+    - If you want to add a bug time, you must add it twice: once using the ```Add Time``` and again using ```Add Bug Time```.
+- Total points is calculated by dividing the total time by 4;
+    - You can change this behavior by setting the constant ```#pointsDenominator``` at ```JiraPointsAdder``` class.
+- Each time entry can be deleted by clickin on the ```x```, doing so will recalculate the total time and points.
+- Click on ```Clear``` button to reset the app.
 
-### `npm start`
+# Authors
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Giancarlo Dalle Mole](https://github.com/giancarlo-dm)

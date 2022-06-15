@@ -15,7 +15,7 @@ type Props = {
  */
 export const AddTimeForm: FC<Props> = (props) => {
 
-    const timeInputRef = useRef<HTMLInputElement>();
+    const timeInputRef = useRef<HTMLInputElement>(null);
 
     const addTimeHandler = (logTimeType: LoggTimeTypeEnum) => {
 
