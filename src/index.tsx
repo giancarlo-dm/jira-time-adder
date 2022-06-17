@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import App from "./App";
 
-import "./assets/fonts/roboto/font.css";
 import "./assets/styles/main.scss";
 import "./assets/styles/buttons.scss";
 import "./assets/styles/inputs.scss";

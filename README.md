@@ -13,8 +13,7 @@
     - Bug times does not add to the total time and is used only to get the total time spent on bugs;
     - If you want to add a bug time, you must add it twice: once using the ```Add Time``` and again using ```Add Bug Time```.
 - Total points is calculated by dividing the total time by 4;
-    - You can change this behavior by setting the constant ```#pointsDenominator``` at ```JiraPointsAdder``` class.
-- Each time entry can be deleted by clickin on the ```x```, doing so will recalculate the total time and points.
+- Each time entry can be deleted by clicking on the ```x```, doing so will recalculate the total time and points.
 - Click on ```Clear``` button to reset the app.
 
 # Authors

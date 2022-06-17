@@ -1,7 +1,9 @@
 const path = require("path");
 
-const {app, BrowserWindow, ipcMain, dialog} = require("electron");
+const {app, BrowserWindow, dialog, ipcMain, Menu} = require("electron");
 const isDev = require("electron-is-dev");
+
+const isMac = process.platform === "darwin";
 
 /**
  * @type {BrowserWindow|null}
@@ -25,7 +27,7 @@ if (require("electron-squirrel-startup")) {
 
 // Quit when all windows are closed, except on macOS
 app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
+    if (!isMac) {
         app.quit();
     }
 });
@@ -88,6 +90,67 @@ function createWindow() {
     else {
         win.loadURL(`file://${path.join(__dirname, "../build/index.html")}`);
     }
+
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate([
+        {
+        role: "fileMenu",
+            submenu: [
+                isMac ? {role: "close"} : {role: "quit"}
+            ]
+        },
+        {
+            role: "viewMenu",
+            submenu: [
+                {role: "reload"},
+                {role: "forceReload"},
+                {role: "toggleDevTools"},
+                {type: "separator"},
+                {role: "resetZoom"},
+                {role: "zoomIn"},
+                {role: "zoomOut"},
+                {type: "separator"},
+                {role: "togglefullscreen"}
+            ]
+        },
+        {
+            role: "help",
+            submenu: [
+                {
+                    label: "Usage instructions",
+                    accelerator: "F1",
+                    async click() {
+                        const instructionsWindow = new BrowserWindow({
+                            width: 720,
+                            height: 540,
+                            resizable: false,
+                            maximizable: false,
+                            webPreferences: {
+                                nodeIntegration: false,
+                                contextIsolation: true
+                            }
+                        });
+
+                        await instructionsWindow.loadURL(`file://${path.join(__dirname, "/help/index.html")}`);
+                        instructionsWindow.removeMenu();
+                        instructionsWindow.show();
+                    }
+                },
+                {
+                    label: "About",
+                    async click() {
+                        await dialog.showMessageBox(win, {
+                            type: "info",
+                            title: "About",
+                            message: "About this App",
+                            detail: `Created by: Giancarlo Dalle Mole <giancarlo.dallemole1995@gmail.com>\nWhen: June 2022\nVersion: ${app.getVersion()}`,
+                            buttons: ["ok"]
+                        });
+                    }
+                }
+            ]
+        }
+    ]));
 
     return win;
 }
