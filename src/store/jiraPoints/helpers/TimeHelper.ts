@@ -5,6 +5,18 @@ import { Time } from "../models";
 export class TimeHelper {
 
     /**
+     * Creates a new Time object.
+     * @param hours The hours
+     * @param minutes The minutes
+     */
+    static create(hours: number, minutes: number): Time {
+        return {
+            hours: hours,
+            minutes: minutes
+        };
+    }
+
+    /**
      * Add two times, returning a new instance.
      * @param time1
      * @param time2

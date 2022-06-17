@@ -1,15 +1,22 @@
 import { FC, Fragment } from "react";
 
-import { LoggTimeTypeEnum, Time, TimeHelper } from "../../../store";
+import { LoggTimeTypeEnum, TimeHelper, useJiraPointsSlice } from "../../../store";
 import classes from "./Total.module.scss";
 
 type Props = {
     type: LoggTimeTypeEnum;
-    points: string;
-    time: Time;
 }
 
 export const Total: FC<Props> = (props) => {
+
+    const jiraPointsSlice = useJiraPointsSlice();
+    const totalTime = props.type === LoggTimeTypeEnum.NORMAL
+        ? jiraPointsSlice.totalTimeSpent
+        : jiraPointsSlice.totalBugsTimeSpent;
+    const totalPoints = props.type === LoggTimeTypeEnum.NORMAL
+        ? jiraPointsSlice.totalPointsSpent
+        : jiraPointsSlice.totalBugsPointsSpent;
+
 
     return (
         <Fragment>
@@ -21,13 +28,13 @@ export const Total: FC<Props> = (props) => {
                 <div className="control-group horizontal">
                     <label htmlFor="totalPoints">Points</label>
                     <input id={`${props.type}_totalPoints`} type="text" className="control"
-                           value={props.points}
+                           value={totalPoints}
                            disabled />
                 </div>
                 <div className="control-group horizontal">
                     <label htmlFor="totalBugsTime">Time</label>
                     <input id={`${props.type}_totalBugsTime`} type="text" className="control"
-                           value={TimeHelper.format(props.time)}
+                           value={TimeHelper.format(totalTime)}
                            disabled />
                 </div>
             </div>

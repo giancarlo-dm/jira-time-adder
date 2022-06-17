@@ -1,7 +1,12 @@
 const path = require("path");
 
-const {app, BrowserWindow} = require("electron");
+const {app, BrowserWindow, ipcMain, dialog} = require("electron");
 const isDev = require("electron-is-dev");
+
+/**
+ * @type {BrowserWindow|null}
+ */
+let mainWindow = null;
 
 // Conditionally include the dev tools installer to load React Dev Tools
 let installExtension;
@@ -33,9 +38,33 @@ app.on("activate", () => {
     }
 });
 
-app.whenReady()
-    .then(createWindow);
+/**
+ * Shows a modal dialog for the main window. Use this instead of window.confirm due to bugs on windows
+ * and also it is more customizable.
+ */
+ipcMain.handle(
+    "show-modal",
+    /**
+     * @param event {IpcMainInvokeEvent}
+     * @param args {MessageBoxOptions}
+     */
+    async (event, args) => {
+        return await dialog.showMessageBox(mainWindow, args);
+    }
+);
 
+/**
+ * Creates the main window when the Electron App is ready
+ */
+app.whenReady()
+    .then(() => {
+        mainWindow = createWindow();
+    });
+
+/**
+ *
+ * @return {BrowserWindow}
+ */
 function createWindow() {
 
     // Create the browser window.
@@ -59,4 +88,6 @@ function createWindow() {
     else {
         win.loadURL(`file://${path.join(__dirname, "../build/index.html")}`);
     }
+
+    return win;
 }

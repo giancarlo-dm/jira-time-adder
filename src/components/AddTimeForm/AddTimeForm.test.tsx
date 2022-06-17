@@ -1,7 +1,9 @@
+import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
 
-import { LoggTimeTypeEnum } from "../../store";
+import { JiraPoints, jiraPointsReducer, LoggTimeTypeEnum, TimeHelper } from "../../store";
 import { AddTimeForm } from "./AddTimeForm";
 
 
@@ -13,9 +15,40 @@ describe("AddTimeForm component",  () => {
         addBugTimeButton: "addBugTimeButton",
     };
 
+    let jiraPointsState: JiraPoints;
+    let store: EnhancedStore;
+
+    const renderWithStore = (component: JSX.Element) => {
+        return (
+            <Provider store={store}>
+                {component}
+            </Provider>
+        );
+    };
+
+    beforeEach(() => {
+        jiraPointsState = {
+            loggedTimes: [],
+            totalPointsSpent: "0.0",
+            totalTimeSpent: TimeHelper.create(4, 45),
+            bugsLoggedTimes: [],
+            totalBugsPointsSpent: "0.0",
+            totalBugsTimeSpent: TimeHelper.create(0, 0)
+        };
+
+        store = configureStore({
+            reducer: {
+                jiraPoints: jiraPointsReducer
+            },
+            preloadedState: {
+                jiraPoints: jiraPointsState
+            }
+        });
+    });
+
     test("renders an input with two buttons", () => {
         // Arrange
-        render(<AddTimeForm />);
+        render(renderWithStore(<AddTimeForm />));
 
         // Assert
         const input: HTMLInputElement = screen.getByTestId(testIds.input);
@@ -36,7 +69,7 @@ describe("AddTimeForm component",  () => {
         const addTimeTimeHandler = (time: string, loggTimeType: LoggTimeTypeEnum) => {
             payload = {time: time, loggTimeType: loggTimeType};
         };
-        render(<AddTimeForm onAddTime={addTimeTimeHandler} />);
+        render(renderWithStore(<AddTimeForm onAddTime={addTimeTimeHandler} />));
 
         // Act
         const input: HTMLInputElement = screen.getByTestId(testIds.input);
@@ -55,7 +88,7 @@ describe("AddTimeForm component",  () => {
         const addTimeTimeHandler = (time: string, loggTimeType: LoggTimeTypeEnum) => {
             payload = {time: time, loggTimeType: loggTimeType};
         };
-        render(<AddTimeForm onAddTime={addTimeTimeHandler} />);
+        render(renderWithStore(<AddTimeForm onAddTime={addTimeTimeHandler} />));
 
         // Act
         const input: HTMLInputElement = screen.getByTestId(testIds.input);
@@ -74,7 +107,7 @@ describe("AddTimeForm component",  () => {
         const addTimeTimeHandler = (time: string, loggTimeType: LoggTimeTypeEnum) => {
             payload = {time: time, loggTimeType: loggTimeType};
         };
-        render(<AddTimeForm onAddTime={addTimeTimeHandler} />);
+        render(renderWithStore(<AddTimeForm onAddTime={addTimeTimeHandler} />));
 
         // Act
         const input: HTMLInputElement = screen.getByTestId(testIds.input);
@@ -93,7 +126,7 @@ describe("AddTimeForm component",  () => {
         const addTimeTimeHandler = (time: string, loggTimeType: LoggTimeTypeEnum) => {
             payload = {time: time, loggTimeType: loggTimeType};
         };
-        render(<AddTimeForm onAddTime={addTimeTimeHandler} />);
+        render(renderWithStore(<AddTimeForm onAddTime={addTimeTimeHandler} />));
 
         // Act
         const input: HTMLInputElement = screen.getByTestId(testIds.input);

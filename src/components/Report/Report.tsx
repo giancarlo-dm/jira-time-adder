@@ -1,27 +1,55 @@
 import { FC } from "react";
 
-import { LoggedTime, LoggTimeTypeEnum, Time } from "../../store";
+import { jiraPointsActions, LoggedTime, LoggTimeTypeEnum, useAppDispatch } from "../../store";
 import { TimeEntries } from "./TimeEntries/TimeEntries";
 import { Total } from "./Total/Total";
 import classes from "./Report.module.scss";
 
+import isElectron from "is-electron";
+import { MessageBoxOptions, MessageBoxReturnValue } from "electron";
+const ipcRenderer = isElectron() ? window.require("electron").ipcRenderer : null;
+
 type Props = {
-    normalTimes: Array<LoggedTime>;
-    bugTimes: Array<LoggedTime>;
-    points: string;
-    bugPoints: string;
-    totalTimeSpent: Time;
-    totalBugsTimeSpent: Time;
     onReset?(): void;
     onDeleteItem?(loggedTime: LoggedTime): void;
 }
 
 export const Report: FC<Props> = (props) => {
 
+    const dispatch = useAppDispatch();
+
     const clearHandler = () => {
-        const confirmed = window.confirm("Are you sure you want to clear all entries?");
-        if (confirmed && props.onReset != null) {
-            props.onReset();
+        if (isElectron()) {
+            ipcRenderer!
+                .invoke("show-modal", {
+                    type: "warning",
+                    title: "Delete confirmation",
+                    message: "Are you sure you want to clear all entries?",
+                    buttons: ["Yes", "Cancel"],
+                    cancelId: 1,
+                    defaultId: 1
+                } as MessageBoxOptions)
+                .then((result: MessageBoxReturnValue) => {
+                    if (result.response === 0) {
+                        dispatch(jiraPointsActions.reset());
+                        if (props.onReset != null) {
+                            props.onReset();
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+        // Fallback for browser
+        else {
+            const confirmed = window.confirm("Are you sure you want to clear all entries?");
+            if (confirmed) {
+                dispatch(jiraPointsActions.reset());
+                if (props.onReset != null) {
+                    props.onReset();
+                }
+            }
         }
     };
 
@@ -30,21 +58,15 @@ export const Report: FC<Props> = (props) => {
             <hr className={classes.ruler} />
             <div className={classes.content}>
                 <div className={classes.container}>
-                   <TimeEntries normalTimes={props.normalTimes}
-                                bugTimes={props.bugTimes}
-                                onDeleteItem={props.onDeleteItem} />
+                   <TimeEntries onDeleteItem={props.onDeleteItem} />
                 </div>
 
                 <div className={classes.container}>
-                    <Total type={LoggTimeTypeEnum.NORMAL}
-                           points={props.points}
-                           time={props.totalTimeSpent}/>
+                    <Total type={LoggTimeTypeEnum.NORMAL} />
                 </div>
 
                 <div className={classes.container}>
-                    <Total type={LoggTimeTypeEnum.BUG}
-                           points={props.bugPoints}
-                           time={props.totalBugsTimeSpent}/>
+                    <Total type={LoggTimeTypeEnum.BUG} />
                 </div>
 
                 <div className={classes.container}>

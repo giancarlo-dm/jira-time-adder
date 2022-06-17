@@ -1,6 +1,6 @@
 import { FC, KeyboardEvent, useRef } from "react";
 
-import { LoggTimeTypeEnum } from "../../store";
+import { jiraPointsActions, LoggTimeTypeEnum, useAppDispatch } from "../../store";
 import classes from "./AddTimeForm.module.scss";
 
 type Props = {
@@ -8,23 +8,32 @@ type Props = {
 }
 
 /**
- * Stateful Component that represents a form to add the times.
- * @constructor
+ * Component that represents a form to add the times.
+ *
+ * ## User actions
+ * - Add: Adds a new time entry on the time series. Modify the {@link JiraPoints} store slice.
+ *
+ * ## Events:
+ * - {@link Props.onAddTime} when a new time entry is added.
  *
  * @since 0.1.0
  */
 export const AddTimeForm: FC<Props> = (props) => {
 
+    const dispatch = useAppDispatch();
+
     const timeInputRef = useRef<HTMLInputElement>(null);
 
     const addTimeHandler = (logTimeType: LoggTimeTypeEnum) => {
 
-        if (timeInputRef.current!.value.length === 0) {
+        const value = timeInputRef.current!.value;
+        if (value.length === 0) {
             return;
         }
 
+        dispatch(jiraPointsActions.addTime({timeStr: value, type: logTimeType}));
         if (props.onAddTime != null) {
-            props.onAddTime(timeInputRef.current!.value, logTimeType);
+            props.onAddTime(value, logTimeType);
         }
 
         timeInputRef.current!.value = "";
